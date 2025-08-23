@@ -20,31 +20,45 @@ public class StudentDao {
         session.getTransaction().commit();
     }
 
-    // Përditëson të dhënat e një studenti ekzistues
+    // Përditëso të dhënat e një studenti ekzistues
     public void update(Student student) {
         session.beginTransaction();
         session.merge(student); // bashkon ndryshimet me studentin ekzistues
         session.getTransaction().commit();
     }
 
-    // Kthen listën e studentëve që i përkasin një kursi specifik
-    public List<Student> findByCourse(Long courseId) {
-        Query<Student> query = session.createQuery(
-                "FROM Student WHERE course.id = :courseId", Student.class);
-        query.setParameter("courseId", courseId);
-        return query.list();
+    public List<Student> searchByFirst(String firstname) {
+        String query = "select t from Student t where t.firstName = :firstname";
+        Query<Student> findQuery = session.createQuery(query, Student.class);
+        findQuery.setParameter("firsttname", firstname);
+        return findQuery.getResultList();
+    }
+    public List<Student> searchByLastName(String lastname) {
+        String query = "select t from Student t where t.lastName = :lastname";
+        Query<Student> findQuery = session.createQuery(query, Student.class);
+        findQuery.setParameter("lastname", lastname);
+        return findQuery.getResultList();
+    }
+    public List<Student>searchByDateOfBirth(String dateofbirth){
+        String query ="select t from Student t where t.dateofbirth=:dateofbirth";
+        Query<Student>findQuery=session.createQuery(query, Student.class);
+        findQuery.setParameter("dateofbirth",dateofbirth);
+        return  findQuery.getResultList();
+    }
+    public List<Student> searchClass(String Class) {
+        String query = "select t from Student t where t.class = :class";
+        Query<Student> findQuery = session.createQuery(query, Student.class);
+        findQuery.setParameter("class", Class);
+        return findQuery.getResultList();
+    }
+    public List<Student> searchCourse(String course) {
+        String query = "select t from Student t where t.course = :course";
+        Query<Student> findQuery = session.createQuery(query, Student.class);
+        findQuery.setParameter("course", course);
+        return findQuery.getResultList();
     }
 
-    // Kërkon studentë sipas emrit, mbiemrit ose klasës
-    public List<Student> search(String firstName, String lastName, String className) {
-        Query<Student> query = session.createQuery(
-                "FROM Student WHERE firstName = :firstName OR lastName = :lastName OR className = :className",
-                Student.class);
-        query.setParameter("firstName", firstName);
-        query.setParameter("lastName", lastName);
-        query.setParameter("className", className);
-        return query.list();
-    }
+
 }
 
 

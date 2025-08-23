@@ -1,5 +1,6 @@
 package org.example.daos;
 import org.example.entities.Course;
+import org.example.entities.Student;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -32,21 +33,31 @@ public class CourseDao {
 //        return query.list();
 //    }
 
-
-    public List<Course> search(String name, String className, String teacherFirstName, String teacherLastName) {
-        Query<Course> query = session.createQuery(
-                "FROM Course WHERE name = :name OR className = :className OR (teacher.firstName = :teacherFirstName AND teacher.lastName = :teacherLastName)",
-                Course.class
-        );
-        query.setParameter("name", name);
-        query.setParameter("className", className);
-        query.setParameter("teacherFirstName", teacherFirstName);
-        query.setParameter("teacherLastName", teacherLastName);
-        return query.list();
+    public List<Course> searchByLastName(String lastname) {
+        String query = "select t from Course t where t.lastName = :lastname";
+        Query<Course> findQuery = session.createQuery(query, Course.class);
+        findQuery.setParameter("lastname", lastname);
+        return findQuery.getResultList();
     }
 
-}
 
+
+    public List<Course> searchClass(String Class) {
+        String query = "select t from Course t where t.tClass= :Class";
+        Query<Course> findQuery = session.createQuery(query, Course.class);
+        findQuery.setParameter("Class", Class);
+        return findQuery.getResultList();
+
+
+    }
+
+    public List<Course> searchByTeacher(String Teacher) {
+        String query = "select t from Course t where t.tTeacher= :Teacher";
+        Query<Course> findQuery = session.createQuery(query, Course.class);
+        findQuery.setParameter("Teacher", Teacher);
+        return findQuery.getResultList();
+    }
+}
 
 
 

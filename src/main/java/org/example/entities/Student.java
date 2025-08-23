@@ -28,4 +28,6 @@ public class Student {
 private List<Communication>communications;
 
 
-}
+
+    }
+
