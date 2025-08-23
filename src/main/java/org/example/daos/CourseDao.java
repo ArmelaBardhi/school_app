@@ -33,28 +33,17 @@ public class CourseDao {
 //        return query.list();
 //    }
 
-    public List<Course> searchByLastName(String lastname) {
-        String query = "select t from Course t where t.lastName = :lastname";
+    public List<Course> searchByName(String name) {
+        String query = "select t from Course t where t.name = :name";
         Query<Course> findQuery = session.createQuery(query, Course.class);
-        findQuery.setParameter("lastname", lastname);
+        findQuery.setParameter("name", name);
         return findQuery.getResultList();
     }
 
-
-
-    public List<Course> searchClass(String Class) {
-        String query = "select t from Course t where t.tClass= :Class";
+    public List<Course> searchByTeacher(Long teacherID) {
+        String query = "select c from Course c where c.teacher.id= :teacherID";
         Query<Course> findQuery = session.createQuery(query, Course.class);
-        findQuery.setParameter("Class", Class);
-        return findQuery.getResultList();
-
-
-    }
-
-    public List<Course> searchByTeacher(String Teacher) {
-        String query = "select t from Course t where t.tTeacher= :Teacher";
-        Query<Course> findQuery = session.createQuery(query, Course.class);
-        findQuery.setParameter("Teacher", Teacher);
+        findQuery.setParameter("teacherID", teacherID);
         return findQuery.getResultList();
     }
 }
