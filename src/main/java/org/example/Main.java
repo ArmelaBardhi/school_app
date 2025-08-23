@@ -1,6 +1,6 @@
 package org.example;
 
-import config.HibernateUtils;
+import org.example.config.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
