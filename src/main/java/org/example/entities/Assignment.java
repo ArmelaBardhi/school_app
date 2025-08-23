@@ -2,7 +2,7 @@ package org.example.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.example.entities.Course;
+
 
 import java.time.LocalDate;
 
