@@ -4,6 +4,7 @@ import org.example.entities.Student;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class StudentDao extends GenericDao<Student, Long>{
@@ -29,7 +30,7 @@ public class StudentDao extends GenericDao<Student, Long>{
 //    }
 
     public List<Student> searchByFirst(String firstname) {
-        String query = "select t from Student t where t.firstName = :firstname";
+        String query = "select t from Student t where t.name = :firstname";
         Query<Student> findQuery = session.createQuery(query, Student.class);
         findQuery.setParameter("firsttname", firstname);
         return findQuery.getResultList();
@@ -40,10 +41,10 @@ public class StudentDao extends GenericDao<Student, Long>{
         findQuery.setParameter("lastname", lastname);
         return findQuery.getResultList();
     }
-    public List<Student>searchByDateOfBirth(String dateofbirth){
-        String query ="select t from Student t where t.dateofbirth = :dateofbirth";
+    public List<Student>searchByDateOfBirth(LocalDate birthday){
+        String query ="select t from Student t where t.birthday = :dateofbirth";
         Query<Student>findQuery=session.createQuery(query, Student.class);
-        findQuery.setParameter("dateofbirth",dateofbirth);
+        findQuery.setParameter("dateofbirth",birthday);
         return  findQuery.getResultList();
     }
 

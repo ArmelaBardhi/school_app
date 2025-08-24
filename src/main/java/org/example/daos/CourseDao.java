@@ -35,9 +35,9 @@ public class CourseDao extends GenericDao<Course, Long>{
 //    }
 
     public List<Course> searchByName(String name) {
-        String query = "select t from Course t where t.name = :name";
+        String query = "select t from Course t where t.name like :name";
         Query<Course> findQuery = session.createQuery(query, Course.class);
-        findQuery.setParameter("name", name);
+        findQuery.setParameter("name", "%"+name+"%");
         return findQuery.getResultList();
     }
 
