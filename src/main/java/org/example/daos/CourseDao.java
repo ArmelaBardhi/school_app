@@ -6,10 +6,11 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class CourseDao {
+public class CourseDao extends GenericDao<Course, Long>{
     private final Session session;
 
     public CourseDao(Session session) {
+        super(session, Course.class);
         this.session = session;
     }
 

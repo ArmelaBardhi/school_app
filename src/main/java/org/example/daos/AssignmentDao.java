@@ -15,10 +15,11 @@ public class AssignmentDao extends GenericDao<Assignment, Long>{
             this.session = session;
         }
 
-    public List<Assignment> searchByStudent(String ) {
-        String query = "select t from Teacher t where t.name = :firstname";
-        Query<Teacher> findQuery = session.createQuery(query, Teacher.class);
-        findQuery.setParameter("firstname", name);
+    public List<Assignment> searchByCourse(Long courseId) {
+        String query = "select a from Assignment a where a.course.id = :id";
+        Query<Assignment> findQuery = session.createQuery(query, Assignment.class);
+        findQuery.setParameter("id", courseId);
         return findQuery.getResultList();
+    }
 
 }

@@ -1,5 +1,6 @@
 package org.example.daos;
 
+import org.example.entities.Course;
 import org.example.entities.Teacher;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -33,5 +34,15 @@ public class TeacherDao extends GenericDao<Teacher,Long > {
         Query<Teacher> findQuery = session.createQuery(query, Teacher.class);
         findQuery.setParameter("subject", subject);
         return findQuery.getResultList();
+    }
+
+    public List<Course> findByTeacher(Long teacherId) {
+        // "FROM Course c WHERE c.teacher.id = :teacherId"
+        Teacher teacher = this.findBYId(teacherId);
+        if (teacher != null) {
+            return teacher.getCourses();
+        } else {
+            return null;
+        }
     }
 }
