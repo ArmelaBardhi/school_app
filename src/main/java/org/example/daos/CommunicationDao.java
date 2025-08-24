@@ -44,14 +44,7 @@ public class CommunicationDao extends GenericDao<Communication, Long> {
         return findQuery.getResultList();
     }
 
- public void  deleteMessage(Long id){
- Communication comm=session.get(Communication.class,id);
- if(comm !=null) {
-     session.detach(comm);
- }
-    }
 }
-    //find by mesagge
-    //find by data
+
 
 
