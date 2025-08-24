@@ -41,6 +41,6 @@ public class CommunicationService {
         return communications;
     }
     public  void  deleteMessage(Long id){
-        communicationDao.deleteMessage(id);
+        communicationDao.delete(id);
     }
 }
