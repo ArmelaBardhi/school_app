@@ -6,26 +6,27 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class StudentDao {
+public class StudentDao extends GenericDao<Student, Long>{
     private final Session session;
 
     public StudentDao(Session session) {
+        super(session, Student.class);
         this.session = session;
     }
 
     // Shton një student të ri në databazë
-    public void save(Student student) {
-        session.beginTransaction();
-        session.persist(student); // ruan studentin
-        session.getTransaction().commit();
-    }
+//    public void save(Student student) {
+//        session.beginTransaction();
+//        session.persist(student); // ruan studentin
+//        session.getTransaction().commit();
+//    }
 
     // Përditëso të dhënat e një studenti ekzistues
-    public void update(Student student) {
-        session.beginTransaction();
-        session.merge(student); // bashkon ndryshimet me studentin ekzistues
-        session.getTransaction().commit();
-    }
+//    public void update(Student student) {
+//        session.beginTransaction();
+//        session.merge(student); // bashkon ndryshimet me studentin ekzistues
+//        session.getTransaction().commit();
+//    }
 
     public List<Student> searchByFirst(String firstname) {
         String query = "select t from Student t where t.firstName = :firstname";
@@ -40,21 +41,16 @@ public class StudentDao {
         return findQuery.getResultList();
     }
     public List<Student>searchByDateOfBirth(String dateofbirth){
-        String query ="select t from Student t where t.dateofbirth=:dateofbirth";
+        String query ="select t from Student t where t.dateofbirth = :dateofbirth";
         Query<Student>findQuery=session.createQuery(query, Student.class);
         findQuery.setParameter("dateofbirth",dateofbirth);
         return  findQuery.getResultList();
     }
-    public List<Student> searchClass(String Class) {
-        String query = "select t from Student t where t.class = :class";
+
+    public List<Student> searchCourse(Long courseId) {
+        String query = "select s from Student s where s.course.id = :courseId";
         Query<Student> findQuery = session.createQuery(query, Student.class);
-        findQuery.setParameter("class", Class);
-        return findQuery.getResultList();
-    }
-    public List<Student> searchCourse(String course) {
-        String query = "select t from Student t where t.course = :course";
-        Query<Student> findQuery = session.createQuery(query, Student.class);
-        findQuery.setParameter("course", course);
+        findQuery.setParameter("courseId", courseId);
         return findQuery.getResultList();
     }
 
