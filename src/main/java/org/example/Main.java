@@ -12,3 +12,7 @@ public class Main {
         Session session = sessionFactory.openSession();
     }
 }
+
+
+//“Ky projekt menaxhon studentë, mësues, kurse dhe komunikime duke përdorur DAO
+// dhe Services për të organizuar dhe përpunuar të dhënat në mënyrë të strukturuar.”

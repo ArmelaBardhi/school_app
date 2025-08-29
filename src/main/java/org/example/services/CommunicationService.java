@@ -7,7 +7,9 @@ import org.example.entities.Communication;
 import org.example.entities.Course;
 import org.example.entities.Student;
 import org.example.entities.Teacher;
-
+//Ky shërbim dërgon mesazhe nga një mësues tek të gjithë studentët e një kursi.
+// Merr kursin dhe mësuesin nga DAO-t, krijon një komunikim për secilin student,
+// e ruan në të dhënat dhe i kthen të gjitha komunikimet e listuara."
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

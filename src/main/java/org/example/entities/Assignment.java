@@ -3,7 +3,7 @@ package org.example.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
+//assignment ka pershkrimin,daten e afatit dhe i perket nje kursi
 import java.time.LocalDate;
 
 @Entity
